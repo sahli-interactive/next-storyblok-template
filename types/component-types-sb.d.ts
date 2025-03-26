@@ -23,12 +23,6 @@ export interface GridStoryblok {
 
 export interface PageStoryblok {
   body?: (GridStoryblok | TeaserStoryblok)[];
-  seo?: {
-    _uid?: string;
-    title?: string;
-    plugin?: string;
-    description?: string;
-  };
   _uid: string;
   component: "page";
   uuid?: string;

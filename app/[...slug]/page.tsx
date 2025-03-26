@@ -1,8 +1,10 @@
-import { ISbStoriesParams, getStoryblokApi, StoryblokStory, ISbStoryData } from '@storyblok/react/rsc'
-import Logo from '../../components/layout/Logo'
-import { draftMode } from 'next/headers'
+import { ISbStoriesParams } from '@storyblok/react'
+import { ISbStoryData, StoryblokStory } from '@storyblok/react/rsc'
 import { Metadata } from 'next'
+import { draftMode } from 'next/headers'
 import { notFound } from 'next/navigation'
+import Logo from '../../components/layout/Logo'
+import { getStoryblokApi } from '../../lib/storyblok'
 import { PageStoryblok } from '../../types/component-types-sb'
 
 export type ContentType = PageStoryblok // add more content types if needed
@@ -11,7 +13,7 @@ const isDev = process.env.NODE_ENV === 'development'
 export const revalidate = isDev ? 0 : 3600
 
 async function fetchData(slug: string) {
-  const { isEnabled: isDraft } = draftMode()
+  const { isEnabled: isDraft } = await draftMode()
   const sbParams: ISbStoriesParams = {
     resolve_links: 'url',
     version: isDev || isDraft ? 'draft' : 'published',
@@ -58,8 +60,9 @@ export async function generateStaticParams() {
   return paths
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const slug = params?.slug ? params.slug.join('/') : 'home'
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params
+  const slug = params.slug ? params.slug.join('/') : 'home'
   const { story } = await fetchData(slug)
 
   if (!story) {
@@ -90,11 +93,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 type Props = {
-  params: { slug: string[] }
+  params: Promise<{ slug?: string[] }>
 }
 
-export default async function Home({ params }: Props) {
-  const slug = params?.slug ? params.slug.join('/') : 'home'
+export default async function Home(props: Props) {
+  const params = await props.params
+  const slug = params.slug ? params.slug.join('/') : 'home'
   const { story } = await fetchData(slug)
 
   if (!story) {

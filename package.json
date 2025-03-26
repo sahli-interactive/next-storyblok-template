@@ -8,31 +8,32 @@
     "start": "next start",
     "lint": "next lint",
     "create-component": "node ./generators/copy.js",
-    "pull-components": "storyblok pull-components --space=SPACE_ID",
-    "generate-sb-types": "storyblok-generate-ts source=./components.SPACE_ID.json target=./types/component-types-sb compilerOptions.additionalProperties=false",
-    "generate-components": "node generators/cli.js ../components.SPACE_ID.json"
+    "pull-components": "storyblok pull-components --space=202685",
+    "generate-sb-types": "storyblok-generate-ts source=./components.202685.json target=./types/component-types-sb compilerOptions.additionalProperties=false",
+    "generate-components": "node generators/cli.js ../components.202685.json"
   },
   "dependencies": {
-    "@storyblok/react": "^3.0.9",
-    "clsx": "^2.1.0",
-    "next": "^14.1.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "@storyblok/react": "^4.5.2",
+    "clsx": "^2.1.1",
+    "next": "^15.2.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "storyblok-rich-text-react-renderer-ts": "^3.2.0"
   },
   "devDependencies": {
-    "@types/node": "^20.12.6",
-    "@types/react": "^18.2.3",
-    "autoprefixer": "^10.4.14",
-    "eslint": "^9.0.0",
-    "eslint-config-next": "^14.1.4",
-    "postcss": "^8.4.38",
-    "sass": "^1.74.1",
-    "storyblok-generate-ts": "ssh:git@github.com:sahli-interactive/storyblok-generate-ts.git#extend-default-custom-parser",
-    "tailwindcss": "^3.4.3",
-    "typescript": "^5.4.4"
+    "@types/node": "^22.13.13",
+    "@types/react": "^19.0.12",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.23.0",
+    "eslint-config-next": "^15.2.4",
+    "postcss": "^8.5.3",
+    "sass": "^1.86.0",
+    "storyblok-generate-ts": "^2.2.0",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.8.2"
   },
   "engines": {
     "node": ">=8.0.0"
-  }
+  },
+  "packageManager": "yarn@4.7.0"
 }

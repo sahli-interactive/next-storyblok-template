@@ -26,9 +26,10 @@ export async function GET(request: Request) {
   }
 
   // Enable Draft Mode by setting the cookie
-  draftMode().enable()
+  const draft = await draftMode()
+  draft.enable()
 
-  // Redirect to the path from the fetched post
+  // Redirect to the path from the fetched post, pass the search parameters to initialize Storyblok bridge
   // We don't redirect to searchParams.slug as that might lead to open redirect vulnerabilities
-  redirect(`/${data.story.full_slug}`)
+  redirect(`/${data.story.full_slug}?${searchParams.toString()}`)
 }

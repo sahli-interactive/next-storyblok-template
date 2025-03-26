@@ -1,14 +1,10 @@
-import { SbBlokData, storyblokEditable } from '@storyblok/react/rsc'
+import { storyblokEditable } from '@storyblok/react/rsc'
 import Image from 'next/image'
 import { TeaserStoryblok } from '../../types/component-types-sb'
 
-type TeaserProps = {
-  blok: TeaserStoryblok
-}
-
-const Teaser = ({ blok }: TeaserProps) => {
+export default function Teaser({ blok }: { blok: TeaserStoryblok }) {
   return (
-    <div {...storyblokEditable(blok as SbBlokData)} className="container mx-auto px-4">
+    <div {...storyblokEditable(blok)} className="container mx-auto px-4">
       <div className="flex justify-between py-16 sm:py-10">
         <div className="w-full lg:w-1/2 xl:w-6/12 text-center lg:text-left py-4 sm:p-0">
           <h1 className="text-4xl xl:text-5xl text-light-onSurfacePrimary dark:text-dark-onSurfacePrimary font-medium tracking-normal leading-tight mb-6">
@@ -40,5 +36,3 @@ const Teaser = ({ blok }: TeaserProps) => {
     </div>
   )
 }
-
-export default Teaser

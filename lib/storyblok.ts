@@ -7,6 +7,7 @@ import grid from '../components/nestables/Grid'
 import teaser from '../components/nestables/Teaser'
 
 export const getStoryblokApi = storyblokInit({
+  // @ts-expect-error
   accessToken: process.env.STORYBLOK_TOKEN,
   use: [apiPlugin],
   components: {

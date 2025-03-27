@@ -1,15 +1,12 @@
-import { storyblokEditable, StoryblokComponent } from '@storyblok/react/rsc'
+import { SbBlokData, storyblokEditable, StoryblokServerComponent } from '@storyblok/react/rsc'
 import { PageStoryblok } from '../../types/component-types-sb'
 
-type PageProps = {
-  blok: PageStoryblok
+export default function Page({ blok }: { blok: PageStoryblok }) {
+  return (
+    <main className="p-6" {...storyblokEditable(blok as SbBlokData)}>
+      {blok.body?.map(nestedBlok => (
+        <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
+      ))}
+    </main>
+  )
 }
-
-const Page = ({ blok }: PageProps) => (
-  <main className="p-6" {...storyblokEditable(blok)}>
-    {blok.body &&
-      blok.body.map(nestedBlok => <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />)}
-  </main>
-)
-
-export default Page

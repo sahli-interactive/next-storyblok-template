@@ -10,7 +10,7 @@ import { PageStoryblok } from '../../types/component-types-sb'
 export type ContentType = PageStoryblok // add more content types if needed
 
 const isDev = process.env.NODE_ENV === 'development'
-export const revalidate = isDev ? 0 : 3600
+export const revalidate = 3600
 
 async function fetchData(slug: string) {
   const { isEnabled: isDraft } = await draftMode()
